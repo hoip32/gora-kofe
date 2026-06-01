@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Гора Кофе — кофейня в Иноземцево у подножия Бештау</title>
+<meta name="description" content="Гора Кофе — уютная кофейня в посёлке Иноземцево (Железноводск, КМВ). Авторский кофе, свежие десерты, летняя терраса, Wi-Fi. Рейтинг 5.0 на Яндекс.Картах.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Manrope:wght@300;400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F2E8D8;
+    --cream-2:#E9DCC6;
+    --espresso:#231710;
+    --espresso-2:#33231A;
+    --coffee:#5A3B27;
+    --amber:#C9803B;
+    --amber-soft:#D89A57;
+    --pine:#4E5C46;
+    --pine-soft:#6E7E63;
+    --ink:#2B1D14;
+    --paper:#FBF6EC;
+    --line:rgba(43,29,20,.16);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Manrope',sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* grain overlay */
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.045;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  h1,h2,h3,.display{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.04;letter-spacing:-.01em}
+  .script{font-family:'Caveat',cursive}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  .eyebrow{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;font-weight:600}
+
+  /* ---------- NAV ---------- */
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:1000;transition:.4s}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;max-width:1180px;margin:0 auto;transition:.4s}
+  .nav.scrolled{background:rgba(35,23,16,.92);backdrop-filter:blur(10px);box-shadow:0 8px 30px rgba(0,0,0,.18)}
+  .nav.scrolled .nav-inner{padding:12px 28px}
+  .brand{display:flex;align-items:center;gap:11px;color:var(--cream);font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;letter-spacing:.02em}
+  .brand .mk{width:34px;height:34px;flex:none}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{color:var(--cream);font-size:.9rem;font-weight:500;opacity:.85;transition:.25s;position:relative}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;height:1.5px;width:0;background:var(--amber);transition:.3s}
+  .nav-links a:hover{opacity:1}
+  .nav-links a:hover::after{width:100%}
+  .nav-cta{background:var(--amber);color:var(--espresso)!important;padding:9px 20px;border-radius:40px;font-weight:600;opacity:1!important}
+  .nav-cta::after{display:none!important}
+  .nav-cta:hover{background:var(--amber-soft);transform:translateY(-1px)}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+  .burger span{width:24px;height:2px;background:var(--cream);transition:.3s}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;
+    background:radial-gradient(120% 120% at 70% 10%,#3a2719 0%,#231710 55%,#190f09 100%);
+    color:var(--cream);overflow:hidden}
+  .hero .stars{position:absolute;inset:0;background-image:
+    radial-gradient(1.4px 1.4px at 20% 22%,rgba(255,235,200,.7),transparent),
+    radial-gradient(1.2px 1.2px at 65% 14%,rgba(255,235,200,.5),transparent),
+    radial-gradient(1.6px 1.6px at 82% 30%,rgba(255,235,200,.6),transparent),
+    radial-gradient(1px 1px at 42% 9%,rgba(255,235,200,.5),transparent);}
+  .hero .mountains{position:absolute;left:0;right:0;bottom:0;width:100%;display:block}
+  .hero-content{position:relative;z-index:5;padding-top:120px;padding-bottom:160px;max-width:760px}
+  .hero .kicker{color:var(--amber-soft);margin-bottom:22px;opacity:0;animation:rise .8s .1s forwards}
+  .hero h1{font-size:clamp(3.4rem,9vw,7rem);margin-bottom:6px;opacity:0;animation:rise .9s .25s forwards}
+  .hero h1 em{font-style:italic;color:var(--amber-soft)}
+  .hero .tag{font-family:'Caveat',cursive;font-size:clamp(1.6rem,3.6vw,2.4rem);color:var(--cream);opacity:0;animation:rise .9s .4s forwards;margin-bottom:26px;transform:rotate(-1.5deg)}
+  .hero .lede{font-size:1.12rem;max-width:480px;opacity:0;animation:rise .9s .55s forwards;color:rgba(242,232,216,.82);font-weight:300}
+  .hero-btns{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;opacity:0;animation:rise .9s .7s forwards}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:44px;font-weight:600;font-size:.96rem;transition:.3s;cursor:pointer;border:none}
+  .btn-pri{background:var(--amber);color:var(--espresso)}
+  .btn-pri:hover{background:var(--amber-soft);transform:translateY(-2px);box-shadow:0 12px 28px rgba(201,128,59,.35)}
+  .btn-ghost{border:1.5px solid rgba(242,232,216,.4);color:var(--cream)}
+  .btn-ghost:hover{border-color:var(--amber-soft);color:var(--amber-soft)}
+  .hero-badge{position:absolute;right:6%;top:30%;z-index:6;text-align:center;opacity:0;animation:fadein 1s 1s forwards}
+  .hero-badge .ring{width:118px;height:118px;border-radius:50%;border:1.5px solid rgba(216,154,87,.5);display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(35,23,16,.4);backdrop-filter:blur(4px)}
+  .hero-badge .num{font-family:'Cormorant Garamond',serif;font-size:2.6rem;color:var(--amber-soft);line-height:1}
+  .hero-badge .stars-row{color:var(--amber);font-size:.8rem;letter-spacing:2px;margin-top:2px}
+  .hero-badge small{display:block;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;opacity:.7;margin-top:4px}
+
+  /* steam */
+  .cup{position:absolute;right:9%;bottom:22%;z-index:6;opacity:0;animation:fadein 1s 1.2s forwards}
+  .steam{position:absolute;width:6px;height:42px;background:linear-gradient(to top,transparent,rgba(242,232,216,.5));border-radius:50%;filter:blur(2px);animation:steam 3.2s infinite ease-in-out}
+  @keyframes steam{0%{transform:translateY(8px) scaleX(1);opacity:0}30%{opacity:.6}100%{transform:translateY(-30px) scaleX(1.8);opacity:0}}
+  @keyframes rise{to{opacity:1;transform:translateY(0)}}
+  .hero .kicker,.hero h1,.hero .tag,.hero .lede,.hero-btns{transform:translateY(26px)}
+  @keyframes fadein{to{opacity:1}}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{position:relative}
+  .pad{padding:104px 0}
+  .sec-head{margin-bottom:54px;max-width:620px}
+  .sec-head .eyebrow{color:var(--amber);display:block;margin-bottom:14px}
+  .sec-head h2{font-size:clamp(2.4rem,5vw,3.6rem)}
+  .sec-head p{margin-top:16px;color:rgba(43,29,20,.7);font-size:1.06rem}
+
+  .reveal{opacity:0;transform:translateY(34px);transition:.8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- ABOUT STRIP ---------- */
+  .about{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
+  .about-grid h2{font-size:clamp(2.2rem,4.6vw,3.4rem);margin-bottom:20px}
+  .about-grid p{color:rgba(43,29,20,.75);font-size:1.08rem;margin-bottom:16px}
+  .stats{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+  .stat{background:var(--cream);border:1px solid var(--line);border-radius:16px;padding:18px 22px;flex:1;min-width:130px}
+  .stat .b{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--coffee);line-height:1}
+  .stat small{display:block;color:rgba(43,29,20,.6);font-size:.82rem;margin-top:5px}
+  .about-card{background:var(--espresso);color:var(--cream);border-radius:24px;padding:40px;position:relative;overflow:hidden}
+  .about-card .quote{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-style:italic;line-height:1.3}
+  .about-card .who{margin-top:22px;font-size:.9rem;color:var(--amber-soft);font-weight:600}
+  .about-card .who span{display:block;color:rgba(242,232,216,.6);font-weight:400;font-size:.82rem}
+  .about-card .qm{position:absolute;top:-10px;right:24px;font-family:'Cormorant Garamond',serif;font-size:9rem;color:rgba(201,128,59,.18);line-height:1}
+
+  /* ---------- MENU ---------- */
+  .menu{background:var(--cream)}
+  .menu-cat{margin-bottom:48px}
+  .menu-cat .cat-title{display:flex;align-items:baseline;gap:16px;margin-bottom:24px}
+  .menu-cat .cat-title h3{font-size:1.9rem;white-space:nowrap;color:var(--coffee)}
+  .menu-cat .cat-title .dash{flex:1;height:1px;background:var(--line)}
+  .menu-cat .cat-title .ic{font-size:1.3rem}
+  .m-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 48px}
+  .m-item{display:flex;gap:14px;align-items:flex-start;padding:16px 4px;border-bottom:1px dashed var(--line)}
+  .m-item .body{flex:1}
+  .m-item .top{display:flex;align-items:baseline;gap:10px}
+  .m-item h4{font-family:'Manrope';font-size:1.06rem;font-weight:600}
+  .m-item .leader{flex:1;border-bottom:1px dotted rgba(43,29,20,.3);transform:translateY(-4px)}
+  .m-item .price{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--amber);white-space:nowrap}
+  .m-item .vol{font-size:.74rem;color:rgba(43,29,20,.5);font-weight:600;margin-left:6px}
+  .m-item .desc{font-size:.86rem;color:rgba(43,29,20,.6);margin-top:3px;font-weight:300}
+  .menu-note{margin-top:18px;text-align:center;font-style:italic;color:rgba(43,29,20,.6);font-family:'Cormorant Garamond',serif;font-size:1.3rem}
+  .menu-note a{color:var(--amber);font-weight:600;border-bottom:1px solid var(--amber)}
+
+  /* ---------- FEATURES ---------- */
+  .feat{background:var(--espresso);color:var(--cream)}
+  .feat .sec-head .eyebrow{color:var(--amber-soft)}
+  .feat .sec-head p{color:rgba(242,232,216,.7)}
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .f-card{background:var(--espresso-2);border:1px solid rgba(242,232,216,.09);border-radius:20px;padding:30px;transition:.35s}
+  .f-card:hover{transform:translateY(-5px);border-color:rgba(201,128,59,.4);background:#3b2819}
+  .f-card .ic{font-size:1.7rem;margin-bottom:16px;display:block}
+  .f-card h4{font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin-bottom:8px;color:var(--cream)}
+  .f-card p{font-size:.92rem;color:rgba(242,232,216,.65);font-weight:300}
+
+  /* ---------- LOCATION ---------- */
+  .loc{background:var(--paper)}
+  .loc-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:stretch}
+  .loc-info h2{font-size:clamp(2.2rem,4.6vw,3.4rem);margin-bottom:8px}
+  .loc-info .script{color:var(--amber);font-size:1.7rem;display:block;margin-bottom:22px}
+  .info-row{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+  .info-row .ic{width:42px;height:42px;flex:none;border-radius:12px;background:var(--cream);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+  .info-row .t{font-weight:600;font-size:1.02rem}
+  .info-row .s{color:rgba(43,29,20,.62);font-size:.92rem}
+  .info-row a.s:hover{color:var(--amber)}
+  .stops{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .stops span{font-size:.78rem;background:var(--cream);border:1px solid var(--line);padding:5px 12px;border-radius:30px;color:rgba(43,29,20,.7)}
+  .map-box{border-radius:24px;overflow:hidden;border:1px solid var(--line);min-height:430px;position:relative;background:var(--cream-2);box-shadow:0 24px 60px rgba(43,29,20,.14)}
+  .map-box iframe{width:100%;height:100%;min-height:430px;border:0;display:block;filter:saturate(.9)}
+  .map-overlay{position:absolute;left:18px;bottom:18px;background:var(--paper);border-radius:14px;padding:12px 16px;box-shadow:0 8px 24px rgba(0,0,0,.16);display:flex;align-items:center;gap:12px;z-index:3}
+  .map-overlay .mk{width:30px;height:30px}
+  .map-overlay b{font-family:'Cormorant Garamond',serif;font-size:1.15rem}
+  .map-overlay small{display:block;font-size:.74rem;color:rgba(43,29,20,.6)}
+
+  /* ---------- CONTACT / CTA ---------- */
+  .cta{background:radial-gradient(120% 120% at 30% 0%,#3a2719,#231710);color:var(--cream);text-align:center}
+  .cta h2{font-size:clamp(2.6rem,6vw,4.6rem);margin-bottom:14px}
+  .cta h2 em{font-style:italic;color:var(--amber-soft)}
+  .cta p{max-width:520px;margin:0 auto 34px;color:rgba(242,232,216,.75);font-size:1.08rem}
+  .contact-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .cb{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:44px;font-weight:600;transition:.3s;font-size:.98rem}
+  .cb-tel{background:var(--amber);color:var(--espresso)}
+  .cb-tel:hover{background:var(--amber-soft);transform:translateY(-2px)}
+  .cb-tg{background:rgba(242,232,216,.1);border:1px solid rgba(242,232,216,.25);color:var(--cream)}
+  .cb-tg:hover{background:rgba(242,232,216,.18);transform:translateY(-2px)}
+  .hours{margin-top:42px;display:inline-flex;align-items:center;gap:10px;font-size:.92rem;color:rgba(242,232,216,.7);background:rgba(242,232,216,.06);padding:10px 20px;border-radius:40px;border:1px solid rgba(242,232,216,.12)}
+  .dot{width:8px;height:8px;border-radius:50%;background:#7bbf6a;box-shadow:0 0 0 4px rgba(123,191,106,.2)}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:#190f09;color:rgba(242,232,216,.6);padding:48px 0 34px}
+  .foot-grid{display:flex;justify-content:space-between;align-items:flex-start;gap:30px;flex-wrap:wrap}
+  .foot-brand{display:flex;align-items:center;gap:12px;color:var(--cream);font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700}
+  .foot-links{display:flex;gap:26px;flex-wrap:wrap}
+  .foot-links a{font-size:.9rem;transition:.25s}
+  .foot-links a:hover{color:var(--amber-soft)}
+  .foot-bot{margin-top:34px;padding-top:22px;border-top:1px solid rgba(242,232,216,.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.8rem;opacity:.7}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:880px){
+    .nav-links{position:fixed;inset:0 0 0 auto;width:78%;max-width:330px;background:var(--espresso);flex-direction:column;justify-content:center;gap:26px;transform:translateX(100%);transition:.4s;box-shadow:-20px 0 60px rgba(0,0,0,.4)}
+    .nav-links.open{transform:translateX(0)}
+    .nav-links a{font-size:1.2rem}
+    .burger{display:flex}
+    .about-grid,.loc-grid{grid-template-columns:1fr;gap:34px}
+    .feat-grid{grid-template-columns:1fr 1fr}
+    .m-grid{grid-template-columns:1fr;gap:0}
+    .hero-badge,.cup{display:none}
+    .pad{padding:74px 0}
+  }
+  @media(max-width:560px){
+    .wrap{padding:0 20px}
+    .feat-grid{grid-template-columns:1fr}
+    .hero-content{padding-bottom:120px}
+    .stats{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <svg class="mk" viewBox="0 0 40 40" fill="none"><path d="M5 32 L15 14 L21 24 L26 16 L35 32 Z" fill="#C9803B"/><path d="M15 14 L18.5 20 L13 20 Z" fill="#F2E8D8"/><path d="M26 16 L29 21 L23.5 21 Z" fill="#F2E8D8"/></svg>
+      Гора&nbsp;Кофе
+    </a>
+    <nav class="nav-links" id="navlinks">
+      <a href="#about">О нас</a>
+      <a href="#menu">Меню</a>
+      <a href="#feat">Атмосфера</a>
+      <a href="#loc">Где мы</a>
+      <a href="#contact" class="nav-cta">Связаться</a>
+    </nav>
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="stars"></div>
+  <div class="wrap hero-content">
+    <span class="eyebrow kicker">Иноземцево · у подножия Бештау</span>
+    <h1>Гора <em>Кофе</em></h1>
+    <div class="tag">здесь начинается твоё утро ☕</div>
+    <p class="lede">Маленькая кофейня с большой душой. Авторский кофе, свежие десерты и та самая атмосфера, ради которой возвращаются снова и снова.</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn btn-pri">Смотреть меню →</a>
+      <a href="#loc" class="btn btn-ghost">Как добраться</a>
+    </div>
+  </div>
+
+  <div class="hero-badge">
+    <div class="ring">
+      <div class="num">5.0</div>
+      <div class="stars-row">★★★★★</div>
+      <small>Хорошее место<br>2026</small>
+    </div>
+  </div>
+
+  <div class="cup">
+    <div class="steam" style="left:8px"></div>
+    <div class="steam" style="left:22px;animation-delay:1s"></div>
+    <div class="steam" style="left:36px;animation-delay:.5s"></div>
+    <svg width="90" height="80" viewBox="0 0 90 80" fill="none"><path d="M10 35 H70 V58 C70 70 60 76 48 76 H32 C20 76 10 70 10 58 Z" fill="#C9803B"/><path d="M70 40 H78 C84 40 84 54 76 54 H70" stroke="#C9803B" stroke-width="5" fill="none"/><ellipse cx="40" cy="35" rx="30" ry="7" fill="#33231A"/></svg>
+  </div>
+
+  <svg class="mountains" viewBox="0 0 1440 230" preserveAspectRatio="none">
+    <path d="M0 230 L0 150 L180 60 L320 130 L470 40 L640 150 L760 80 L900 160 L1080 70 L1240 140 L1440 80 L1440 230 Z" fill="#1c130c"/>
+    <path d="M0 230 L0 185 L240 120 L420 175 L600 110 L780 175 L980 120 L1180 180 L1440 130 L1440 230 Z" fill="#140d07"/>
+  </svg>
+</section>
+
+<!-- ABOUT -->
+<section class="about pad" id="about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <span class="eyebrow" style="color:var(--amber)">О кофейне</span>
+      <h2>Кофе с видом на горы</h2>
+      <p>«Гора Кофе» — это уютное место в самом сердце Иноземцево, где каждую чашку готовят с заботой. Загляните на чашечку капучино или раф, поработайте за чашкой американо или встретьтесь с друзьями на летней террасе.</p>
+      <p>Рядом — пекарня, поэтому к кофе всегда найдутся тёплые круассаны и фирменный «Наполеон». Тот случай, когда хочется задержаться подольше.</p>
+      <div class="stats">
+        <div class="stat"><div class="b">5.0★</div><small>средний рейтинг<br>на Яндекс.Картах</small></div>
+        <div class="stat"><div class="b">108</div><small>оценок<br>гостей</small></div>
+        <div class="stat"><div class="b">63</div><small>тёплых<br>отзыва</small></div>
+      </div>
+    </div>
+    <div class="about-card reveal">
+      <div class="qm">”</div>
+      <div class="quote">Самый вкусный кофе. Интерьер располагает к долгим душевным беседам. Обязательно вернусь сюда в следующий приезд.</div>
+      <div class="who">Виктор Л.<span>Гость кофейни · отзыв на Яндекс.Картах</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu pad" id="menu">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Меню</span>
+      <h2>Что у нас в чашке</h2>
+      <p>Классика, фирменные напитки и сезонные фреши. Цены — как в кофейне, актуальны на момент обновления карточки.</p>
+    </div>
+
+    <div class="menu-cat reveal">
+      <div class="cat-title"><span class="ic">☕</span><h3>Кофе и классика</h3><span class="dash"></span></div>
+      <div class="m-grid">
+        <div class="m-item"><div class="body"><div class="top"><h4>Эспрессо</h4><span class="leader"></span><span class="price">150&nbsp;₽<span class="vol">37 мл</span></span></div></div></div>
+        <div class="m-item"><div class="body"><div class="top"><h4>Американо</h4><span class="leader"></span><span class="price">150&nbsp;₽<span class="vol">250 мл</span></span></div></div></div>
+        <div class="m-item"><div class="body"><div class="top"><h4>Капучино</h4><span class="leader"></span><span class="price">200&nbsp;₽<span class="vol">250 мл</span></span></div><div class="desc">Эспрессо с подогретым вспененным молоком — итальянская классика.</div></div></div>
+        <div class="m-item"><div class="body"><div class="top"><h4>Флэт Уайт</h4><span class="leader"></span><span class="price">200&nbsp;₽<span class="vol">250 мл</span></span></div><div class="desc">Крепкий и бодрящий — для крепких орешков.</div></div></div>
+        <div class="m-item"><div class="body"><div class="top"><h4>Латте</h4><span class="leader"></span><span class="price">210&nbsp;₽<span class="vol">330 мл</span></span></div></div></div>
+        <div class="m-item"><div class="body"><div class="top"><h4>Мокачино</h4><span class="leader"></span><span class="price">250&nbsp;₽<span class="vol">330 мл</span></span></div><div class="desc">Горячий кофе с шоколадом — сладость и насыщенность вместе.</div></div></div>
+      </div>
+    </div>
+
+    <div class="menu-cat reveal">
+      <div class="cat-title"><span class="ic">🍦</span><h3>Авторское</h3><span class="dash"></span></div>
+      <div class="m-grid">
+        <div class="m-item"><div class="body"><div class="top"><h4>Раф ванильный</h4><span class="leader"></span><span class="price">250&nbsp;₽<span class="vol">330 мл</span></span></div><div class="desc">Эспрессо со сливками 10% и щепоткой ванильного сахара. Сливочно и бодряще.</div></div></div>
+        <div class="m-item"><div class="body"><div class="top"><h4>Тёплый бамбл</h4><span class="leader"></span><span class="price">220&nbsp;₽<span class="vol">250 мл</span></span></div></div></div>
+        <div class="m-item"><div class="body"><div class="top"><h4>Бамбл на апельсиновом фреше</h4><span class="leader"></span><span class="price">350&nbsp;₽<span class="vol">500 мл</span></span></div><div class="desc">Эспрессо на свежевыжатом апельсиновом соке со льдом.</div></div></div>
+      </div>
+    </div>
+
+    <p class="menu-note reveal">…и ещё чай, десерты и круассаны из пекарни рядом.<br><a href="https://yandex.ru/maps/org/gora_kofe/148196158417/menu/" target="_blank" rel="noopener">Полное меню на Яндекс.Картах →</a></p>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="feat pad" id="feat">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Атмосфера</span>
+      <h2>Зачем сюда заходят</h2>
+      <p>Не просто кофе с собой — а место, где хочется остаться.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="f-card reveal"><span class="ic">🌿</span><h4>Летняя терраса</h4><p>Кофе на свежем воздухе в тёплый сезон — с видом на горы.</p></div>
+      <div class="f-card reveal"><span class="ic">📶</span><h4>Wi-Fi и розетки</h4><p>Удобно поработать или поучиться за чашечкой любимого напитка.</p></div>
+      <div class="f-card reveal"><span class="ic">🥐</span><h4>Свежие десерты</h4><p>Круассаны, «Наполеон» и сладости из пекарни по соседству.</p></div>
+      <div class="f-card reveal"><span class="ic">🥤</span><h4>Кофе с собой</h4><p>Спешите? Заберём ваш заказ навынос за пару минут.</p></div>
+      <div class="f-card reveal"><span class="ic">📺</span><h4>Спорт-трансляции</h4><p>Болеть за любимую команду вкуснее в хорошей компании.</p></div>
+      <div class="f-card reveal"><span class="ic">💳</span><h4>Оплата картой</h4><p>Картой, наличными и чаевые через SberTips — как удобно.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="loc pad" id="loc">
+  <div class="wrap loc-grid">
+    <div class="loc-info reveal">
+      <span class="eyebrow" style="color:var(--amber)">Где нас найти</span>
+      <h2>Заходите в гости</h2>
+      <span class="script">будем рады каждому</span>
+      <div class="info-row"><div class="ic">📍</div><div><div class="t">Адрес</div><a class="s" href="https://yandex.ru/maps/org/gora_kofe/148196158417/" target="_blank" rel="noopener">пос. Иноземцево, ул. 50 лет Октября, 2А<br>Железноводск, Ставропольский край</a></div></div>
+      <div class="info-row"><div class="ic">📞</div><div><div class="t">Телефон</div><a class="s" href="tel:+79034411858">+7 (903) 441-18-58</a></div></div>
+      <div class="info-row"><div class="ic">🕒</div><div><div class="t">Часы работы</div><div class="s">Открыто ежедневно · точное расписание — <a href="https://yandex.ru/maps/org/gora_kofe/148196158417/" target="_blank" rel="noopener" style="color:var(--amber)">на Яндекс.Картах</a></div></div></div>
+      <div class="info-row"><div class="ic">🚌</div><div style="flex:1"><div class="t">Остановки рядом</div><div class="stops"><span>Гормолзавод · 58 м</span><span>Аптека</span><span>Иноземцево</span><span>ст. Бештау</span></div></div></div>
+    </div>
+
+    <div class="map-box reveal">
+      <iframe src="https://yandex.ru/map-widget/v1/?ll=43.087100%2C44.111001&z=17&pt=43.087100,44.111001,pm2rdm&mode=search" loading="lazy" title="Гора Кофе на карте"></iframe>
+      <div class="map-overlay">
+        <svg class="mk" viewBox="0 0 40 40" fill="none"><path d="M5 32 L15 14 L21 24 L26 16 L35 32 Z" fill="#C9803B"/><path d="M15 14 L18.5 20 L13 20 Z" fill="#F2E8D8"/></svg>
+        <div><b>Гора Кофе</b><small>ул. 50 лет Октября, 2А</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT -->
+<section class="cta pad" id="contact">
+  <div class="wrap">
+    <div class="reveal">
+      <h2>Уже хочется <em>кофе?</em></h2>
+      <p>Позвоните, напишите в мессенджер или просто загляните на огонёк — мы поставим чайник… то есть включим кофемашину.</p>
+      <div class="contact-btns">
+        <a href="tel:+79034411858" class="cb cb-tel">📞 +7 (903) 441-18-58</a>
+        <a href="https://t.me/gora_coffee26" target="_blank" rel="noopener" class="cb cb-tg">✈️ Telegram</a>
+        <a href="https://wa.me/79034411858" target="_blank" rel="noopener" class="cb cb-tg">💬 WhatsApp</a>
+      </div>
+      <div class="hours"><span class="dot"></span> Подарочные сертификаты · бизнес-встречи · дни рождения</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <svg class="mk" width="34" height="34" viewBox="0 0 40 40" fill="none"><path d="M5 32 L15 14 L21 24 L26 16 L35 32 Z" fill="#C9803B"/><path d="M15 14 L18.5 20 L13 20 Z" fill="#F2E8D8"/></svg>
+          Гора Кофе
+        </div>
+        <p style="margin-top:12px;max-width:280px;font-size:.9rem">Уютная кофейня в Иноземцево. Авторский кофе, десерты и тёплая атмосфера.</p>
+      </div>
+      <div class="foot-links">
+        <a href="#about">О нас</a>
+        <a href="#menu">Меню</a>
+        <a href="#feat">Атмосфера</a>
+        <a href="#loc">Где мы</a>
+        <a href="#contact">Контакты</a>
+        <a href="https://yandex.ru/maps/org/gora_kofe/148196158417/" target="_blank" rel="noopener">Яндекс.Карты</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Гора Кофе · пос. Иноземцево, ул. 50 лет Октября, 2А</span>
+      <span>Сделано с любовью ☕ и горным воздухом</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // nav scroll state
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+  // burger
+  const burger=document.getElementById('burger'),links=document.getElementById('navlinks');
+  burger.addEventListener('click',()=>links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+  // reveal on scroll
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.14});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%3*0.08)+'s';io.observe(el)});
+</script>
+</body>
+</html>
